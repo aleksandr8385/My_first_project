@@ -1,0 +1,10 @@
+body {
+    background-color: royalblue;
+}
+.summary{
+    display: none;
+}
+.img-responsive {
+    max-height: 250px;
+   
+}
