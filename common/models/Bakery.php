@@ -74,7 +74,7 @@ class Bakery extends \yii\db\ActiveRecord
             [[ 'title',  'content',  'category_id'], 'required'],
             [['id', 'created_by', 'updated_by', 'category_id'], 'integer'],
             [['lead_text', 'content'], 'string'],
-            [['created_at', 'updated_at'], 'safe'],
+            [['created_at', 'updated_at','nameAuthor'], 'safe'],
             [['status_id'],'integer'],
             [['title', 'slug'], 'string', 'max' => 50],
             [['lead_photo', 'meta_description'], 'string', 'max' => 160],
@@ -98,21 +98,27 @@ class Bakery extends \yii\db\ActiveRecord
             'title' => 'Выпечка',
             'status_id' => 'Статус',
             'slug' => 'Slug',
-            'lead_photo' => 'Картинка',
-            'lead_text' => 'Lead Text',
-            'content' => 'Content',
+            'lead_photo' => 'Фото',
+            'lead_text' => 'Краткое описание',
+            'content' => 'Рецепт',
             'meta_description' => 'Meta Description',
-            'created_at' => 'Created At',
+            'created_at' => 'Дата создания',
             'updated_at' => 'Updated At',
             'created_by' => 'Created By',
             'updated_by' => 'Updated By',
-            'category_id' => 'Category ID',
-            'author.username' =>'Автор',
+            'category_id' => 'Категория',
+            
+           
         ];
     }
 
     public function getAuthor(){
         return $this->hasOne(User::className(),['id'=>'user_id']);//выборка из модели User по id равен в модели Bakery по user_id
+    }
+
+    public function getAuthorList()
+    {
+        return  ArrayHelper::map(User::find()->all(),'id','username');
     }
 
     public function getCategory()

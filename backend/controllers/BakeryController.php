@@ -55,10 +55,14 @@ class BakeryController extends Controller
     {
         $searchModel = new BakerySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $nameAuthor = Bakery::getAuthorList();
+        // $categoryList = Bakery::categoryList();
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'nameAuthor' =>  $nameAuthor,
+            // 'categoryList' =>  $categoryList,
         ]);
     }
 
@@ -161,15 +165,23 @@ class BakeryController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $categoryList = Bakery::categoryList();
        
         if ($model->load(Yii::$app->request->post())) {
             $this->uploadImage($model);
             if($model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['view', 
+                'id' => $model->id,
+                'categoryList' =>  $categoryList,
+
+                ]);
             }
         }
         
-        return $this->render('update', ['model' => $model]);
+        return $this->render('update', [
+            'model' => $model,
+            'categoryList' =>  $categoryList,
+            ]);
     }
 
     protected function uploadImage($model)

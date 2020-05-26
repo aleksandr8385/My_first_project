@@ -9,11 +9,29 @@ $params = array_merge(
 return [
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
+    'language' => 'ru',
+    'sourceLanguage' => 'ru',
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [],
     'components' => [
         
+        'i18n' => [
+            'translations' => [
+                'app*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/messages',
+                    //'sourceLanguage' => 'en-US',
+                    'fileMap' => [
+                        'app'       => 'app.php',
+                        'app/error' => 'error.php',
+                    ],
+                    // 'on missingTranslation' => ['app\components\TranslationEventHandler', 'handleMissingTranslation']
+                ],
+            ],
+        ],
+
+      
       
         'request' => [
             'csrfParam' => '_csrf-backend',
@@ -44,6 +62,8 @@ return [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'class' => 'codemix\localeurls\UrlManager',
+            'languages' => ['ru','en'],
             'rules' => [
                 '' => 'bakery/index',                                
                 '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',

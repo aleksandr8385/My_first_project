@@ -18,7 +18,7 @@ class BakerySearch extends Bakery
     {
         return [
             [['id', 'created_by', 'updated_by', 'category_id'], 'integer'],
-            [['title', 'slug', 'lead_photo', 'lead_text', 'content', 'meta_description', 'created_at', 'updated_at'], 'safe'],
+            [['title', 'slug', 'lead_photo', 'lead_text', 'content', 'meta_description', 'created_at', 'updated_at','status_id','author.username'], 'safe'],
         ];
     }
 
@@ -64,6 +64,10 @@ class BakerySearch extends Bakery
             'created_by' => $this->created_by,
             'updated_by' => $this->updated_by,
             'category_id' => $this->category_id,
+            'status_id' => $this->status_id,
+     
+          
+           
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])

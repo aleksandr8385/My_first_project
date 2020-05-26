@@ -26,8 +26,8 @@ use common\models\Category;
         </div>
         <div class="col-md-4">
             <?= $form->field($model, 'category_id')->
-                dropDownList($model->
-                categoryList(), ['prompt' => 'Выбрать вид теста'])->
+                dropDownList($model->categoryList(), 
+                ['prompt' => 'Выбрать вид теста'])->
                 label(false) 
             ?>
         </div>

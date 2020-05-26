@@ -29,42 +29,40 @@ use yii\helpers\Url;
     </div>
     
     <?php if ($model->status_id) : ?>                
-    <div class="panel-heading">
-        <?php if ($showFullContent) : ?>
-            <h1><?= Html::encode($model->title) ?></h1>
-            <?php else : ?>
-            <h4><?= Html::a(Html::encode($model->title), ['/bakery/view', 'id' => $model->id])?></h4>
-        <?php endif; ?>
-
-            <div>
-                <span class="glyphicon glyphicon-calendar"></span>
-                <?= Yii::$app->formatter->asDatetime($model->created_at) ?>
-                <span class="glyphicon glyphicon-user"></span>
-                <?= $model->createdBy->username ?>
-            </div>
-    </div>
-    <div class="row" >
-        <div class="col-md-4" >
-            <?= ($model->lead_photo) ? Html::img(Url::to(['/']) . $model->lead_photo,
-                ['class' => 'img-responsive center-block'],[ 'width' => '60px','height'=>'60px']
-                ) : ''
-            ?>
-        </div>
-        <div class="col-md-6">
-           
-            <?= !empty($model->lead_text) ? Yii::$app->formatter->asHtml($model->lead_text) : ''?>
-            <?= $showFullContent?Yii::$app->formatter->asHtml($model->content): '' ?>
-            
-            <?php if (!$showFullContent) :?>
-       
-                <?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Подробнее...', ['/bakery/view', 'id' => $model->id], [
-                    'class' => 'btn btn-primary btn-block'
-                    ]) 
-                ?>
+        <div class="panel-heading">
+            <?php if ($showFullContent) : ?>
+                <h1><?= Html::encode($model->title) ?></h1>
+                <?php else : ?>
+                <h4><?= Html::a(Html::encode($model->title), ['/bakery/view', 'id' => $model->id])?></h4>
             <?php endif; ?>
+
+                <div>
+                    <span class="glyphicon glyphicon-calendar"></span>
+                    <?= Yii::$app->formatter->asDatetime($model->created_at) ?>
+                    <span class="glyphicon glyphicon-user"></span>
+                    <?= $model->createdBy->username ?>
+                    <span class="badge" > <?= $model->createdBy->email ?></span>
+                </div>
         </div>
+        <div class="row" >
+            <div class="col-md-4" >
+                <?= ($model->lead_photo) ? Html::img(Url::to(['/']) . $model->lead_photo,
+                    ['class' => 'img-responsive center-block'],[ 'width' => '60px','height'=>'60px']
+                    ) : ''
+                ?>
+            </div>
             
-    </div>
+            <div class="col-md-6">
+                <?= !empty($model->lead_text) ? Yii::$app->formatter->asHtml($model->lead_text) : ''?>
+                <?= $showFullContent?Yii::$app->formatter->asHtml($model->content): '' ?>
+                <?php if (!$showFullContent) :?>
+                    <?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Подробнее...', ['/bakery/view', 'id' => $model->id], [
+                        'class' => 'btn btn-primary btn-block'
+                        ]) 
+                    ?>
+                <?php endif; ?>
+            </div>
+        </div>
     <?php endif; ?>
 </div>
     

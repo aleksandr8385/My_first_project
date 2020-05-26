@@ -4,11 +4,12 @@
 /* @var $content string */
 
 use backend\assets\AppAsset;
-use yii\helpers\Html;
+// use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
+use yii\bootstrap\Html;
 
 AppAsset::register($this);
 ?>
@@ -52,12 +53,25 @@ AppAsset::register($this);
                 'ADMIN (' . Yii::$app->user->identity->username . ')',
                 ['class' => 'btn btn-link logout']
             )
+            
             . Html::endForm()
             . '</li>';
             $menuItems[] = ['label' => 'Зарегистрированные', 'url' => ['/user/index']];
             $menuItems[] = ['label' => 'Категории', 'url' => ['/category']];
             $menuItems[] = ['label' => 'Теги', 'url' => ['/tag']];
             $menuItems[] = ['label' => 'Выпечка', 'url' => ['/bakery']];
+            
+            if (Yii::$app->language == 'ru')
+            {
+                echo Html::a('English' , array_merge(Yii::$app->request->get(),
+                    [Yii::$app->controller->route, 'language' => 'en']));
+            }
+            else 
+            {
+                echo Html::a('Русский' , array_merge(Yii::$app->request->get(),
+                    [Yii::$app->controller->route, 'language' => 'ru']));
+            }
+         
     }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],

@@ -2,14 +2,18 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use \yii\helpers\StringHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\BakerySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Bakeries';
+$this->title = \Yii::t('app','Выпечка');
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
+
+
 <div class="bakery-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -25,30 +29,62 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            // 'id',
+                      
             'title',
-            // 'slug',
-            'lead_photo',
-            'lead_text:ntext',
-            'content:ntext',
-            //'meta_description',
-            'created_at',
-            //'updated_at',
-            // 'created_by',
-            'author.username',
-            //'updated_by',
-            //'category_id',
-            ['attribute'=>'status_id','filter'=>['off','on'],'value'=> function($model){
-                if ($model->status_id==1){
-                    $status = 'on';
-                } else {
-                    $status = 'off';
+          
+            ['attribute' =>'lead_photo',
+            'format' => 'html',
+            'label' => 'Фото',
+            'value' => function($name)
+                {
+                    return Html::img('../frontend/web/'.$name->lead_photo , 
+                    [ 'width' => '60px']);
+                
+                },
+            ],
+
+            [
+                'attribute' =>'lead_text',
+                'format' => 'html',
+                'label' => 'Описание',
+                'value' => function ($name) 
+                {
+                    return StringHelper::truncate($name->lead_text, 20);
                 }
-                return $status;
-            }
-    
-        ],
+            ],
+           
+            [
+                'attribute' =>'content',
+                'format' => 'html',
+                'label' => 'Рецепт',
+                'value' => function ($name) {
+                    return StringHelper::truncate($name->content, 20);
+                }
+            ],
+           
+            'created_at',
+          
+            // 'created_by',- автор 
+            [
+               
+                'label' => 'Автор',
+                'attribute'=>'created_by',
+                'value' => 'author.username',
+                'filter' => $nameAuthor,
+            ],
+                       
+            ['attribute'=>'status_id',
+                'filter'=>['off','on'],
+                'value'=> function($model)
+                {
+                    if ($model->status_id==1){
+                        $status = 'on';
+                    }else {
+                        $status = 'off';
+                    }
+                        return $status;
+                }
+            ],
 
             ['class' => 'yii\grid\ActionColumn', 'template' => '{delete} {update} {view}'],
         ],
