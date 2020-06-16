@@ -44,25 +44,40 @@ use yii\helpers\Url;
                     <span class="badge" > <?= $model->createdBy->email ?></span>
                 </div>
         </div>
-        <div class="row" >
-            <div class="col-md-4" >
-                <?= ($model->lead_photo) ? Html::img(Url::to(['/']) . $model->lead_photo,
-                    ['class' => 'img-responsive center-block'],[ 'width' => '60px','height'=>'60px']
-                    ) : ''
-                ?>
-            </div>
+        <div class="container">
+           
+                <div class="content"> <!--my.css -->
+                    <?php if ($showFullContent) :?>    
+                        <div class="foto-ing"> 
+                            <div>
+                                <?= ($model->lead_photo) ? Html::img(Url::to(['/']) . $model->lead_photo,
+                                    ['class' => 'img-responsive  img-photo']
+                                    ) : ''
+                                ?>
+                            </div>
+                            <div class="ingredient">
+                                <?=!empty($model->ingredient) ? Yii::$app->formatter->asHtml($model->ingredient                                                
+                                ) : ''?>
+                            </div>
+                        </div>
+                    <?php endif; ?>  
+
+                        <?= !empty($model->lead_text) ? Yii::$app->formatter->asHtml($model->lead_text
+                                                    
+                            ) : ''
+                        ?>
+                        
+                        <?= $showFullContent?Yii::$app->formatter->asHtml($model->content): '' ?>
+                            <?php if (!$showFullContent) :?>
+                                <?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Подробнее...',
+                                    ['/bakery/view', 'id' => $model->id], ['class' => 'btn btn-primary btn-block']) 
+                                ?>
+                            <?php endif; ?>
+                </div>
             
-            <div class="col-md-6">
-                <?= !empty($model->lead_text) ? Yii::$app->formatter->asHtml($model->lead_text) : ''?>
-                <?= $showFullContent?Yii::$app->formatter->asHtml($model->content): '' ?>
-                <?php if (!$showFullContent) :?>
-                    <?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> Подробнее...', ['/bakery/view', 'id' => $model->id], [
-                        'class' => 'btn btn-primary btn-block'
-                        ]) 
-                    ?>
-                <?php endif; ?>
-            </div>
         </div>
+
+        
     <?php endif; ?>
 </div>
     

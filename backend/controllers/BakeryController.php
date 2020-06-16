@@ -136,6 +136,9 @@ class BakeryController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
+    /**
+     * метод для админа вход в бекенд
+     */
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
@@ -166,6 +169,7 @@ class BakeryController extends Controller
     {
         $model = $this->findModel($id);
         $categoryList = Bakery::categoryList();
+        $nameAuthor = Bakery::getAuthorList();
        
         if ($model->load(Yii::$app->request->post())) {
             $this->uploadImage($model);
@@ -173,6 +177,7 @@ class BakeryController extends Controller
                 return $this->redirect(['view', 
                 'id' => $model->id,
                 'categoryList' =>  $categoryList,
+                'nameAuthor' =>  $nameAuthor,
 
                 ]);
             }
@@ -181,6 +186,7 @@ class BakeryController extends Controller
         return $this->render('update', [
             'model' => $model,
             'categoryList' =>  $categoryList,
+            'nameAuthor' =>  $nameAuthor,
             ]);
     }
 

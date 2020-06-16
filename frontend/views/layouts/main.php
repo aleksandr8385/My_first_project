@@ -29,7 +29,15 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'Konditer',
+        // 'brandLabel' => 'Konditer',
+        'brandLabel' => Html::img('@web/uploads/logo.png').'<span class="logo-text">Кондитер</span>',
+        // Html::a(
+            // [Html::img('@web/uploads/logo.png'),'Bakery'],
+            // Yii::$app->homeUrl,
+            // ['class'=> 'brand-logo']),
+        // ),
+
+        // 'brandLabel' => '<img src="@web/uploads/logo.png" style="display:inline; vertical-align: top; height:32px;">My Company',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -38,7 +46,11 @@ AppAsset::register($this);
     $menuItems = [
         
         ['label' => 'О нас', 'url' => ['/site/about']],
-        ['label' => 'Выпечка', 'url' => ['/bakery']],
+        // ['label' => 'Выпечка', 'url' => ['/bakery']],
+        ['label' => 'Выпечка', 'items' => [
+            ['label'=>'Торты', 'url'=> ['/bakery']],
+            ['label'=>'Печенье', 'url'=> ['/cookies']],
+        ]],
         ['label' => 'Контакты', 'url' => ['/site/contact']],
     ];
     if (Yii::$app->user->isGuest) {

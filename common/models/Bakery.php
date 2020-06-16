@@ -4,7 +4,7 @@ namespace common\models;
 
 use yii\db\ActiveRecord;
 use yii\behaviors\BlameableBehavior;
-use yii\behaviors\SluggableBehavior;
+// use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
 use yii\helpers\ArrayHelper;
@@ -17,7 +17,7 @@ use Yii;
  *
  * @property int $id
  * @property string $title
- * @property string $slug
+ * @property string $ ingredients
  * @property string $lead_photo
  * @property string $lead_text
  * @property string $content
@@ -44,24 +44,25 @@ class Bakery extends \yii\db\ActiveRecord
     public function behaviors()
     {
         return [
-            'timestamp' => [
-                'class' => TimestampBehavior::className(),
-                'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
-                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                'timestamp' => [
+                    'class' => TimestampBehavior::className(),
+                    'attributes' => [
+                        ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                        ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                    ],
+                    'value' => new Expression('NOW()'),
                 ],
-                'value' => new Expression('NOW()'),
-            ],
-            [
-                'class' => BlameableBehavior::className(),
-                'createdByAttribute' => 'created_by',
-                'updatedByAttribute' => 'updated_by',
-            ],
-            [
-                'class' => SluggableBehavior::className(),
-                'attribute' => 'title',
-                'slugAttribute' => 'slug',
-            ],
+
+                [
+                    'class' => BlameableBehavior::className(),
+                    'createdByAttribute' => 'created_by',
+                    'updatedByAttribute' => 'updated_by',
+                ],
+            // [
+            //     'class' => SluggableBehavior::className(),
+            //     'attribute' => 'title',
+            //     'slugAttribute' => 'slug',
+            // ],
         ];
     }
 
@@ -71,13 +72,13 @@ class Bakery extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [[ 'title',  'content',  'category_id'], 'required'],
+            [[ 'title',  'content',  'category_id','ingredient'], 'required'],
             [['id', 'created_by', 'updated_by', 'category_id'], 'integer'],
-            [['lead_text', 'content'], 'string'],
-            [['created_at', 'updated_at','nameAuthor'], 'safe'],
+            [['lead_text'], 'string','max' => 130],
+            [['created_at', 'updated_at','nameAuthor','ingredient','created_by'], 'safe'],
             [['status_id'],'integer'],
-            [['title', 'slug'], 'string', 'max' => 50],
-            [['lead_photo', 'meta_description'], 'string', 'max' => 160],
+            [['title'], 'string', 'max' => 50],
+            [['lead_photo'], 'string', 'max' => 160],
             [            
                 ['imageFile'],
                 'file',
@@ -97,15 +98,15 @@ class Bakery extends \yii\db\ActiveRecord
             'id' => 'ID',
             'title' => 'Выпечка',
             'status_id' => 'Статус',
-            'slug' => 'Slug',
+            'ingredient' => 'Ингредиенты',
             'lead_photo' => 'Фото',
             'lead_text' => 'Краткое описание',
             'content' => 'Рецепт',
-            'meta_description' => 'Meta Description',
+            // 'meta_description' => 'Meta Description',
             'created_at' => 'Дата создания',
-            'updated_at' => 'Updated At',
+            // 'updated_at' => 'Updated At',
             'created_by' => 'Created By',
-            'updated_by' => 'Updated By',
+            // 'updated_by' => 'Updated By',
             'category_id' => 'Категория',
             
            
@@ -144,7 +145,7 @@ class Bakery extends \yii\db\ActiveRecord
 
     public function categoryList()
     {
-        return ArrayHelper::map(Category::find()->all(), 'id', 'name');
+        return ArrayHelper::map(Category::find()->all(), 'id', 'title_testo');
     }
 
     public function upload()   

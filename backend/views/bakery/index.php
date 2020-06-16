@@ -16,8 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="bakery-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
+    
     <p>
         <?= Html::a('Create Bakery', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
@@ -38,9 +37,19 @@ $this->params['breadcrumbs'][] = $this->title;
             'value' => function($name)
                 {
                     return Html::img('../frontend/web/'.$name->lead_photo , 
-                    [ 'width' => '60px']);
+                    [ 'width' => '100px']);
                 
                 },
+            ],
+            // 'ingredient',
+            [
+                'attribute' =>'ingredient',
+                
+                'label' => 'Ингредиенты',
+                'value' => function ($name) 
+                {
+                    return StringHelper::truncate($name->ingredient, 20);
+                }
             ],
 
             [
@@ -69,7 +78,7 @@ $this->params['breadcrumbs'][] = $this->title;
                
                 'label' => 'Автор',
                 'attribute'=>'created_by',
-                'value' => 'author.username',
+                'value' => 'createdBy.username',
                 'filter' => $nameAuthor,
             ],
                        

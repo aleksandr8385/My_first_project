@@ -18,7 +18,8 @@ class BakerySearch extends Bakery
     {
         return [
             [['id', 'created_by', 'updated_by', 'category_id'], 'integer'],
-            [['title', 'slug', 'lead_photo', 'lead_text', 'content', 'meta_description', 'created_at', 'updated_at','status_id','author.username'], 'safe'],
+            [['title', 'ingredient', 'lead_photo', 'lead_text', 'content',
+              'created_at', 'updated_at','status_id','author.username','created_by'], 'safe'],
         ];
     }
 
@@ -65,17 +66,17 @@ class BakerySearch extends Bakery
             'updated_by' => $this->updated_by,
             'category_id' => $this->category_id,
             'status_id' => $this->status_id,
+            
      
-          
            
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'slug', $this->slug])
+            // ->andFilterWhere(['like', 'ingredient', $this->ingredient])
             ->andFilterWhere(['like', 'lead_photo', $this->lead_photo])
             ->andFilterWhere(['like', 'lead_text', $this->lead_text])
-            ->andFilterWhere(['like', 'content', $this->content])
-            ->andFilterWhere(['like', 'meta_description', $this->meta_description]);
+            ->andFilterWhere(['like', 'content', $this->content]);
+            // ->andFilterWhere(['like', 'meta_description', $this->meta_description]);
 
         return $dataProvider;
     }

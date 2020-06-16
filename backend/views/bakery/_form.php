@@ -1,5 +1,6 @@
 <?php
 
+use dosamigos\ckeditor\CKEditor;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -18,17 +19,32 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'imageFile')->fileInput() ?>
 
+    <?= $form->field($model, 'ingredient')->widget(CKEditor::className(), 
+            [
+                'options'=> ['rows'=> 6],
+                'preset'=> 'full'
+            ])  
+    ?>
+
+    <?= $form->field($model, 'lead_text')->widget(CKEditor::className(), 
+            [
+                'options'=> ['rows'=> 6],
+                'preset'=> 'full'
+            ]) 
+    ?>
+
+    <?= $form->field($model, 'content')->widget(CKEditor::className(), 
+        [
+            'options'=> ['rows'=> 6],
+            'preset'=> 'full'
+        ])
+    ?>
+
+    <!-- // $form->field($model, 'created_by')->dropDownList($model->getAuthorList())  -->
+
    
-
-    <?= $form->field($model, 'lead_text')->textarea(['rows' => 6,]) ?>
-
-    <?= $form->field($model, 'content')->textarea(['rows' => 26]) ?>
-
-    <?= $form->field($model, 'meta_description')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
            
-    <?= $form->field($model, 'category_id')->dropDownList($categoryList) ?>
+    <?= $form->field($model, 'category_id')->dropDownList($model->categoryList()) ?>
 
     <?= $form->field($model, 'status_id')->dropDownList(['off','on']) ?>
 

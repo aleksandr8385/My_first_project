@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
+use yii\data\Pagination;
 
 /**
  * BakeryController implements the CRUD actions for Bakery model.
@@ -38,11 +39,14 @@ class BakeryController extends Controller
     {
         $searchModel = new BakerySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        
-
+        $dataProvider->pagination->pageSize = 8; //пагинация
+       
+      
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+         
+           
         ]);
     }
 
@@ -112,10 +116,11 @@ class BakeryController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             $this->uploadImage($model);
             if($model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['index']);
             }
         }
-        return $this->render('create',['model' => $model]);
+        return $this->render('create',
+            ['model' => $model]);
     }
     
     public function actionUpdate($id)
@@ -125,7 +130,9 @@ class BakeryController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             $this->uploadImage($model);
             if($model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['view',
+                 'id' => $model->id
+                ]);
             }
         }
         
@@ -140,4 +147,6 @@ class BakeryController extends Controller
             $model->upload();
         }
     }
+
+  
 }

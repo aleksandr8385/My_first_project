@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="category-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    
 
     <p>
         <?= Html::a('Create Category', ['create'], ['class' => 'btn btn-success']) ?>
@@ -28,11 +28,10 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             
-            'name',
-            
-            'meta_description',
+            'title_testo',
+            'title_cookies',
             'created_at',
-            'updated_at',
+            
 
             ['class' => 'yii\grid\ActionColumn', 'template' => '{delete} {update}'],
         ],

@@ -15,6 +15,7 @@
 <div class="bakery-view">
     <?= $this->render('_view', [
         'model' => $model,
-        'showFullContent' => true
+        'showFullContent' => true,
+        'class'=>'col-md-12'
         ])?>
 </div>

@@ -43,7 +43,7 @@ class Category extends \yii\db\ActiveRecord
             ],
             [   
                 'class' => SluggableBehavior::className(),
-                'attribute' => 'name',
+                'attribute' => 'title_testo',
                 'slugAttribute' => 'slug',
             ],
         ];
@@ -55,11 +55,11 @@ class Category extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
+           
             [['created_at', 'updated_at'], 'safe'],
-            [['name', 'slug'], 'string', 'max' => 50],
-            [['meta_description'], 'string', 'max' => 160],
-            [['name'], 'unique'],
+            [['title_testo', 'slug'], 'string', 'max' => 50],
+            [['title_cookies'], 'string', 'max' => 160],
+            [['title_testo','title_cookies'], 'unique'],
             [['slug'], 'unique']
         ];
     }
@@ -71,15 +71,15 @@ class Category extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
+            'title_testo' => 'Title_testo',
             'slug' => 'Slug',
-            'meta_description' => 'Meta Description',
+            'title_cookies' => 'Title_cookies',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
     }
 
-    /**Добавили функцию getBareries */
+    /**Добавили функцию getBakeries */
     public function getBakeries()
     {
         return $this->hasMany(Bakery::className(), ['category_id' => 'id']);
