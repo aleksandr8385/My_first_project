@@ -97,6 +97,7 @@ class Cookies extends \yii\db\ActiveRecord
             'status_id' => Yii::t('app', 'Статус'),
             'user_id' => Yii::t('app', 'User ID'),
             'ingredient' => Yii::t('app', 'Ингредиент'),
+            'imageFile' => Yii::t('app', 'Фото'),
         ];
     }
 

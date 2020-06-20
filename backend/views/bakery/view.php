@@ -7,20 +7,19 @@ use yii\widgets\DetailView;
 /* @var $model common\models\Bakery */
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Bakeries', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Торты', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="bakery-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
+ 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Ты уверен что хочешь удалить',
                 'method' => 'post',
             ],
         ]) ?>
@@ -32,10 +31,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'title',
            
-            'ingredient',
+            'ingredient:html',
             'lead_photo',
-            'lead_text:ntext',
-            'content:ntext',
+            'lead_text:html',
+            'content:html',
             // 'meta_description',
             // 'created_at',
             // 'updated_at',

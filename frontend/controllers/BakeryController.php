@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use Yii;
 use common\models\Bakery;
 use common\models\BakerySearch;
+use frontend\models\ContactForm;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -39,12 +40,24 @@ class BakeryController extends Controller
     {
         $searchModel = new BakerySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->pagination->pageSize = 8; //пагинация
        
-      
+        $bakery = Bakery::find()->where(['status_id' => 1]);
+        $countBakery = clone $bakery;
+        $pagination = new Pagination([
+            'pageSize' => 8,
+            // 'defaultPageSize' => '8',
+            'totalCount' => $countBakery->count(),
+           
+        ]);
+        
+        $bakery = $bakery->offset($pagination->offset)->limit($pagination->limit)->all();
+        /*для того чтобы выводило 8 элементов */    
+        $dataProvider->pagination->pageSize=8;        
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'bakery' => $bakery,
+            'pagination' => $pagination,
          
            
         ]);
@@ -146,6 +159,34 @@ class BakeryController extends Controller
         if ($model->imageFile) {
             $model->upload();
         }
+    }
+
+    public function actionAbout()
+    {
+        return $this->render('about');
+    }
+
+    public function actionContact()
+    {
+        $model = new ContactForm();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
+                Yii::$app->session->setFlash('успешно', 'Спасибо за ваше письмо.');
+            } else {
+                Yii::$app->session->setFlash('ошибка', 'Ваше письмо не отправлено.');
+            }
+
+            return $this->refresh();
+        } else {
+            return $this->render('contact', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    public function actionRule()
+    {
+        return $this->render('rule');
     }
 
   

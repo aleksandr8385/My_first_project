@@ -96,7 +96,7 @@ class Bakery extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Выпечка',
+            'title' => 'Название',
             'status_id' => 'Статус',
             'ingredient' => 'Ингредиенты',
             'lead_photo' => 'Фото',
@@ -108,7 +108,7 @@ class Bakery extends \yii\db\ActiveRecord
             'created_by' => 'Created By',
             // 'updated_by' => 'Updated By',
             'category_id' => 'Категория',
-            
+            'imageFile' => 'Фото',
            
         ];
     }

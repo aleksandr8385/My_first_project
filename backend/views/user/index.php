@@ -7,15 +7,11 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Users';
+$this->title = 'Пользователи';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 <div class="user-index">
-
- 
-
-    
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -30,21 +26,22 @@ $this->params['breadcrumbs'][] = $this->title;
             'email:email',
             [
                 'attribute' => 'created_at',
-                'label' => 'Создан',
+                'label' => 'Дата создания',
                 'format' => 'datetime',
             ],
             [
                 'attribute' => 'status',
+                'attribute' => 'Статус',
                 'format' => 'text',
                 'value' => function($model) {
                     return $model->getStatusLabel();
             }],
             
-            [
-                'attribute' => 'updated_at',
-                'label' => 'обновлен',
-                'format' => 'datetime',
-            ],
+            // [
+            //     'attribute' => 'updated_at',
+            //     'label' => 'обновлен',
+            //     'format' => 'datetime',
+            // ],
             
             [
                 'attribute' => 'role',

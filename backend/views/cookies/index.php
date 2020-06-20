@@ -8,7 +8,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel common\models\CookiesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Cookies');
+$this->title = Yii::t('app', 'Печенье');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cookies-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
    
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Cookies'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Добавить рецепт'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -41,14 +41,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
 
-            [
-                'attribute' =>'ingredient',
-                'label' => 'Ингредиенты',
-                'value' => function ($name) 
-                {
-                    return StringHelper::truncate($name->ingredient, 20);
-                }
-            ],
+            // [
+            //     'attribute' =>'ingredient',
+            //     'label' => 'Ингредиенты',
+            //     'value' => function ($name) 
+            //     {
+            //         return StringHelper::truncate($name->ingredient, 20);
+            //     }
+            // ],
             [
                 'attribute' =>'lead_text',
                 'format' => 'html',

@@ -228,4 +228,13 @@ class User extends ActiveRecord implements IdentityInterface
         echo "<pre>". print_r($userRoles)."</pre>";
         // var_dump($userRoles);
     }
+    public function attributeLabels()
+    {
+        return [
+            
+            'status' => 'Статус',
+            
+           
+        ];
+    }
 }

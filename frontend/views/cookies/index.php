@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\widgets\LinkPager;
 use yii\widgets\ListView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
@@ -37,6 +38,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'viewParams' => ['showFullContent' => false]
     ]) ?>
     
+    <div class="pagination">
+        <?= LinkPager::widget(['pagination' => $pagination]);?>
+    </div>
 
     
 

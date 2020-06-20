@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ListView;
+use yii\widgets\LinkPager;
+
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\BakerySearch */
@@ -29,14 +31,19 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= ListView::widget([
         'dataProvider' => $dataProvider,
-        
+                
         'options' => ['class'=>'row'],
         'summary' => '',
         'itemOptions' => ['class'=>'col-md-3'],
         'itemView' => 'card',
         'viewParams' => ['showFullContent' => false]
+        
     ]) ?>
+    <div class="pagination">
+        <?= LinkPager::widget(['pagination' => $pagination]);?>
+    </div>
 
 
 </div>
+
 

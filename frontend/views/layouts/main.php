@@ -45,13 +45,14 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         
-        ['label' => 'О нас', 'url' => ['/site/about']],
+        ['label' => 'О нас', 'url' => ['/bakery/about']],
         // ['label' => 'Выпечка', 'url' => ['/bakery']],
         ['label' => 'Выпечка', 'items' => [
             ['label'=>'Торты', 'url'=> ['/bakery']],
             ['label'=>'Печенье', 'url'=> ['/cookies']],
         ]],
-        ['label' => 'Контакты', 'url' => ['/site/contact']],
+        ['label' => 'Контакты', 'url' => ['/bakery/contact']],
+        ['label' => 'Правила', 'url' => ['/bakery/rule']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Регистрация', 'url' => ['/site/signup']];

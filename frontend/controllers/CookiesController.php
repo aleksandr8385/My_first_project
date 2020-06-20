@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use Yii;
 use common\models\Cookies;
 use common\models\CookiesSearch;
+use yii\data\Pagination;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -38,11 +39,23 @@ class CookiesController extends Controller
     {
         $searchModel = new CookiesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->pagination->pageSize = 8; //пагинация
-
+        
+        $сookies = Cookies::find()->where(['status_id' => 1]);
+        $countCookies = clone $сookies;
+        $pagination = new Pagination([
+            'pageSize' => 8,
+            // 'defaultPageSize' => '8',
+            'totalCount' => $countCookies->count(),
+           
+        ]);
+        
+        $сookies = $сookies->offset($pagination->offset)->limit($pagination->limit)->all();
+        /*для того чтобы выводило 8 элементов */    
+        $dataProvider->pagination->pageSize=8;    
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'pagination' => $pagination,
         ]);
     }
 
@@ -143,4 +156,6 @@ class CookiesController extends Controller
             $model->upload();
         }
     }
+
+ 
 }

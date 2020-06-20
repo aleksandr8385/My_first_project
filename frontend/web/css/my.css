@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(206, 221, 1);
+    background-color: white;
 }
 /* стили для верхней панели */
 .navbar-brand {
@@ -29,10 +29,12 @@ body {
 .bakery-index{
     background-color: rgb(228, 222, 190);
     padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.8);
 }
 .cookies-index{
     background-color: rgb(228, 222, 190);
     padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.8);
 }
 /* фон поля для хлебных крошек и т.д. */
 .breadcrumb {
@@ -98,4 +100,12 @@ caption {
     max-height: 240px;
     border-radius: 10px;
 }
-
+/*убрал лишнюю пагинацию*/
+#w1 > ul.pagination {
+    display: none;
+  
+}
+.content-rule{
+    text-align: justify;
+    padding: 0;
+}

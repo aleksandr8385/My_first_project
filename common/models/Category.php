@@ -71,10 +71,10 @@ class Category extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title_testo' => 'Title_testo',
+            'title_testo' => 'Названия категории теста',
             'slug' => 'Slug',
-            'title_cookies' => 'Title_cookies',
-            'created_at' => 'Created At',
+            'title_cookies' => 'Названия категории печенья',
+            'created_at' => 'Дата создания',
             'updated_at' => 'Updated At',
         ];
     }
