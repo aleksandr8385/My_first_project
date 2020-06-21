@@ -8,7 +8,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel common\models\CookiesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Cookies');
+$this->title = Yii::t('app', 'Печенье');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cookies-index">

@@ -4,10 +4,10 @@
 
 use yii\helpers\Html;
 
-$this->title = 'About';
+$this->title = 'О нас';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-about">
+<div class="site-about content-rule col-md-8 .center-block">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>У нас большая и дружная семья, большинство членов

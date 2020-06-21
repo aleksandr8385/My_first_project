@@ -7,7 +7,7 @@
     /* @var $model common\models\Bakery */
 
     $this->title = $model->title;
-    $this->params['breadcrumbs'][] = ['label' => 'Bakeries', 'url' => ['index']];
+    $this->params['breadcrumbs'][] = ['label' => 'Торты', 'url' => ['index']];
     $this->params['breadcrumbs'][] = $this->title;
     \yii\web\YiiAsset::register($this);
 ?>

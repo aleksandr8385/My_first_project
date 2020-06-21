@@ -9,7 +9,7 @@ use yii\widgets\LinkPager;
 /* @var $searchModel common\models\BakerySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Bakeries';
+$this->title = 'Торты';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="bakery-index">
