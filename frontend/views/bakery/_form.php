@@ -48,7 +48,7 @@ use yii\widgets\ActiveForm;
                         oninvalid="this.setCustomValidity('Ты не согласился с правилами')" 
                         oninput="setCustomValidity('')"/>
                 <span>Я согласен с </span>
-                <?= Html::a( 'правилами', ['/site/rule', 'id' => $model->id]) ?>
+                <?= Html::a( 'правилами', ['/bakery/rule', 'id' => $model->id]) ?>
 
         </label>
         

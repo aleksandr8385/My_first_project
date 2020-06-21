@@ -41,6 +41,15 @@ use dosamigos\ckeditor\CKEditor;
 
 <?= $form->field($model, 'category_id')->dropDownList($model->categoryList()) ?>
 
+<label>
+    <input type="checkbox" required 
+            oninvalid="this.setCustomValidity('Ты не согласился с правилами')" 
+            oninput="setCustomValidity('')"/>
+    <span>Я согласен с </span>
+    <?= Html::a( 'правилами', ['/bakery/rule', 'id' => $model->id]) ?>
+
+</label>
+
 <div class="form-group">
     <?= Html::submitButton('Отправить на модерацию', ['class' => 'btn btn-success']) ?>
 </div>
