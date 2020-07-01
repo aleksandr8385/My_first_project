@@ -38,7 +38,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'itemView' => 'card',
         'viewParams' => ['showFullContent' => false]
         
-    ]) ?>
+        ]) 
+    ?>
     <div class="pagination">
         <?= LinkPager::widget(['pagination' => $pagination]);?>
     </div>

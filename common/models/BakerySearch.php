@@ -42,11 +42,13 @@ class BakerySearch extends Bakery
     public function search($params)
     {
         $query = Bakery::find();
+       
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            
         ]);
 
         $this->load($params);

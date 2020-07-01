@@ -39,7 +39,10 @@ class BakeryController extends Controller
     public function actionIndex()
     {
         $searchModel = new BakerySearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        // $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $params = Yii::$app->request->queryParams;
+        $params['BakerySearch']['status_id'] = 1;
+        $dataProvider = $searchModel->search($params);
        
         $bakery = Bakery::find()->where(['status_id' => 1]);
         $countBakery = clone $bakery;
@@ -52,11 +55,12 @@ class BakeryController extends Controller
         
         $bakery = $bakery->offset($pagination->offset)->limit($pagination->limit)->all();
         /*для того чтобы выводило 8 элементов */    
-        $dataProvider->pagination->pageSize=8;        
+        $dataProvider->pagination->pageSize = 8;        
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'bakery' => $bakery,
+            // 'bakery' => $bakery,
             'pagination' => $pagination,
          
            

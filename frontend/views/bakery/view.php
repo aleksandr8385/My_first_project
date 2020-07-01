@@ -17,5 +17,6 @@
         'model' => $model,
         'showFullContent' => true,
         'class'=>'col-md-12'
-        ])?>
+        ])
+    ?>
 </div>

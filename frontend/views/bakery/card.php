@@ -69,4 +69,7 @@ use yii\helpers\Url;
                 <?php endif; ?>
        
         </div>   
+        <?php else : ?>
+          
+     
     <?php endif; ?>

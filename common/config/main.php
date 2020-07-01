@@ -10,6 +10,7 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        // добавили код для хранения данных авторизации в базе данных
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
             ],

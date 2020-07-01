@@ -112,37 +112,37 @@ class Bakery extends \yii\db\ActiveRecord
            
         ];
     }
-
+    //выборка из модели User по id равен в модели Bakery по user_id
     public function getAuthor(){
-        return $this->hasOne(User::className(),['id'=>'user_id']);//выборка из модели User по id равен в модели Bakery по user_id
+        return $this->hasOne(User::className(),['id'=>'user_id']);
     }
-
+    //получение списка авторов
     public function getAuthorList()
     {
         return  ArrayHelper::map(User::find()->all(),'id','username');
     }
-
+    //получение категории
     public function getCategory()
     {
         return $this->hasOne(Category::className(), ['id' => 'category_id']);
     }
-   
+   //получение создателя рецепта
     public function getCreatedBy()
     {
         return $this->hasOne(User::className(), ['id' => 'created_by']);
     }
     
-    public function getUpdatedBy()
-    {
-        return $this->hasOne(User::className(), ['id' => 'updated_by']);
-    }
+    // public function getUpdatedBy()
+    // {
+    //     return $this->hasOne(User::className(), ['id' => 'updated_by']);
+    // }
     
    
-    public function getBakeryTags()
-    {
-        return $this->hasMany(BakeryTag::className(), ['bakery_id' => 'id']);
-    }
-
+    // public function getBakeryTags()
+    // {
+    //     return $this->hasMany(BakeryTag::className(), ['bakery_id' => 'id']);
+    // }
+    //получения списка категорий теста
     public function categoryList()
     {
         return ArrayHelper::map(Category::find()->all(), 'id', 'title_testo');

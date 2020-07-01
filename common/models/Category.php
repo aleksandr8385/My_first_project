@@ -79,7 +79,7 @@ class Category extends \yii\db\ActiveRecord
         ];
     }
 
-    /**Добавили функцию getBakeries */
+   
     public function getBakeries()
     {
         return $this->hasMany(Bakery::className(), ['category_id' => 'id']);
